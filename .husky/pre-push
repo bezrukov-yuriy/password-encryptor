@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# Get the branch being pushed
+while read local_ref local_sha remote_ref remote_sha
+do
+  # Extract the branch name from local_ref
+  BRANCH_NAME=$(echo "$local_ref" | sed 's|refs/heads/||')
+  
+  # Check if pushing to gh-pages branch
+  if [ "$BRANCH_NAME" = "gh-pages" ]; then
+    echo "Pushing to gh-pages branch - running build script..."
+    
+    # Run the build script
+    npm run build || exit 1
+    
+    # Check if there are changes from the build
+    if git diff --quiet -- index.html assets/; then
+      echo "No changes in built files, continuing push."
+    else
+      # Stage the built files
+      git add index.html assets/
+      
+      # Create a new commit with the specified message
+      git commit -m "build github pages" || exit 1
+      
+      echo "Created commit with built files. Push will continue with this new commit."
+    fi
+  fi
+done
+
+exit 0
