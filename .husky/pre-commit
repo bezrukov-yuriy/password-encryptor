@@ -1,0 +1,17 @@
+# Get the current branch name
+BRANCH_NAME=$(git symbolic-ref --short HEAD)
+
+# Only run build when committing to the gh-pages branch
+if [ "$BRANCH_NAME" = "gh-pages" ]; then
+  echo "Committing to gh-pages branch - running build script..."
+  # Run the build script
+  npm run build || exit 1
+  
+  # Add the built files to the commit
+  git add index.html assets/
+  
+  echo "Build completed and files staged for commit."
+fi
+
+# Allow the commit to proceed
+exit 0
