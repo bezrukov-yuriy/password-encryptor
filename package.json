@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npx vite",
-    "build": "npx vite build"
+    "build": "npx vite build && sed -i '' 's|src=\"/assets/|src=\"./assets/|g' ./index.html && sed -i '' 's|href=\"/assets/|href=\"./assets/|g' ./index.html"
   },
   "author": "",
   "license": "ISC",

@@ -1,5 +1,7 @@
 body {
-  margin-top: 30px;
+  min-width: 100%;
+  margin: 0;
+  padding-top: 20px;
   display: flex;
   justify-content: center;
 }
