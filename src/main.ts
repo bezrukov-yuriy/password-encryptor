@@ -25,6 +25,10 @@ document.addEventListener("DOMContentLoaded", function () {
       reader.onload = function (e) {
         const json: PasswordEntry[] = JSON.parse((e as any).target.result);
         document.querySelector(".secretKey").disabled = true;
+        const content = document.querySelector(".content");
+        if(content) {
+          content.innerHTML = '';
+        }
         codingFile(json);
       };
 
