@@ -5,13 +5,16 @@
   "main": "index.js",
   "scripts": {
     "start": "npx vite",
-    "build": "npx vite build && sed -i '' 's|src=\"/assets/|src=\"./assets/|g' ./index.html && sed -i '' 's|href=\"/assets/|href=\"./assets/|g' ./index.html"
+    "build": "npx vite build && sed -i '' 's|src=\"/assets/|src=\"./assets/|g' ./index.html && sed -i '' 's|href=\"/assets/|href=\"./assets/|g' ./index.html",
+    "prepare": "husky"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+  },
+  "devDependencies": {
     "@types/crypto-js": "^4.2.2",
-    "crypto-js": "^4.2.0",
+    "husky": "^9.1.7",
     "vite": "^7.1.11"
   }
 }
